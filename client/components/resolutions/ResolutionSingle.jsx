@@ -13,27 +13,27 @@ export default class ResolutionSingle extends Component{
   render(){
     const resolutionClass = this.props.resolution.complete ? "checked" : ""; 
     const status = this.props.resolution.complete ? 
-            <span className="completed">Completed</span> : '';
+      <span className="completed">Completed</span> : '';
 
     return(
       <div>
-          <li className={resolutionClass}>
-            <input type="checkbox"
-              readOnly={true}
-              checked={this.props.resolution.complete}
-              onClick={this.toggleChecked.bind(this)}
-            /> 
+        <li className={resolutionClass}>
+          <input type="checkbox"
+            readOnly={true}
+            checked={this.props.resolution.complete}
+            onClick={this.toggleChecked.bind(this)}
+          /> 
 
-          <a href={`/resolutions/${this.props.resolution._id}`}> {this.props.resolution.text} </a> 
-            {status}
+        <a href={`/resolutions/${this.props.resolution._id}`}> {this.props.resolution.text} </a> 
+        {status}
 
-            <button className="btn-cancel"
-              onClick = {this.deleteResolution.bind(this)}>
-              &times;
-            </button>
+        <button className="btn-cancel"
+          onClick = {this.deleteResolution.bind(this)}>
+          &times;
+        </button>
 
-          </li>
-      </div> 
+      </li>
+    </div> 
     );
   }
 }

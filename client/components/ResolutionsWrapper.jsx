@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Resolutions} from '../../imports/collections/resolutions.js' ; 
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
 import ResolutionsForm from './resolutions/ResolutionsForm'; 
 import ResolutionSingle from './resolutions/ResolutionSingle'; 
 
@@ -28,15 +29,29 @@ export default class ResolutionsWrapper extends TrackerReact(Component){
 
   render(){
     return(
-      <div>
+      <ReactCSSTransitionGroup
+        component="div"
+        className="resolutions"
+        transitionName="route"
+        transitionEnterTimeout={600}
+        transitionAppearTimeout={600}
+        transitionLeaveTimeout={400}
+        transitionAppear={true}
+      > 
         <h1> My resolutions</h1>
         <ResolutionsForm /> 
-        <ul className="resolutions">
+        <ReactCSSTransitionGroup
+          component="ul"
+          className="resolutions"
+          transitionName="resolutionLoad"
+          transitionEnterTimeout={600}
+          transitionLeaveTimeout={400}
+        > 
           {this.resolutions().map( (resolution) => {
           return <ResolutionSingle key={resolution._id} resolution={resolution} />  
           }  )}
-        </ul>
-      </div> 
+        </ReactCSSTransitionGroup> 
+      </ReactCSSTransitionGroup> 
     );
 }
 }
